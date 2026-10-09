@@ -1,1 +1,7 @@
+Chip: Apple M5
+Total Number of Cores: 10 (4 Super and 6 Efficiency)
+System Firmware Version: 20457.1.29
 
+hw.physicalcpu: 10
+hw.logicalcpu: 10
+kern.hv_support: 1
