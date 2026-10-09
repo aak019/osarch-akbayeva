@@ -1,1 +1,8 @@
+Capacity: 500,28 GB (500 277 792 768 bytes)
+Model: APPLE SSD AP0512Z
+Capacity: 576,7 MB (576 716 800 bytes)
+Capacity: 494,33 GB (494 332 366 848 bytes)
+Capacity: 5,37 GB (5 368 664 064 bytes)
 
+Filesystem      Size    Used   Avail   Capacity   Mounted on
+/dev/disk3s5    460Gi   83Gi   351Gi   20%        /System/Volumes/Data
