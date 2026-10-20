@@ -1,4 +1,5 @@
-system_profiler SPNVMeDataType | grep -E 'NVMExpress:|Model:|Capacity:'NVMExpress:
+system_profiler SPNVMeDataType | grep -E 'NVMExpress:|Model:|Capacity:'
+NVMExpress:
           Capacity: 500,28 GB (500 277 792 768 bytes)
           Model: APPLE SSD AP0512Z
               Capacity: 576,7 MB (576 716 800 bytes)
