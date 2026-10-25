@@ -1,3 +1,5 @@
+# Machine: MacBook Air and macOS, Date: 20.10.2026
+
 | What | Value | Where I got it |
 |---|---|---|
 | CPU Model | Apple M5 | system_profiler SPHardwareDataType \| grep -E 'Chip:\|Total Number of Cores:\|System Firmware Version:' |
