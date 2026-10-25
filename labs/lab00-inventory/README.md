@@ -23,3 +23,8 @@
 The memory command showed 16 GB of LPDDR5 memory but did not report the number of physical memory packages or the memory speed. My MacBook uses unified, on-package memory instead of conventional replaceable RAM modules.
 
 The firmware command showed version 20457.1.29 but did not provide its date.
+
+## Evidence
+- [evidence/cpu.txt](evidence/cpu.txt) — CPU model, core/thread count, firmware information, and virtualization support
+- [evidence/memory.txt](evidence/memory.txt) — total memory and Apple Silicon unified memory information
+- [evidence/disk.txt](evidence/disk.txt) — NVMe disk model, capacity, and free disk space
