@@ -1,0 +1,10 @@
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet0:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::c360:4450:d5d5:a186%5
+   IPv4 Address. . . . . . . . . . . : 192.168.31.148
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.31.1
