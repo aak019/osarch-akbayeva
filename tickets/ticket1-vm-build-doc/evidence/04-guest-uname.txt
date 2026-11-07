@@ -1,0 +1,34 @@
+2026-11-03T19:52:27+00:00
+lab01-akbayeva
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+Linux lab01-akbayeva 7.0.0-42-generic #42-Ubuntu SMP PREEMPT_DYNAMIC Thu Oct 15 08:19:15 UTC 2026 aarch64 GNU/Linux
+2
+               total        used        free      shared  buff/cache   available
+Mem:           3.3Gi       439Mi       2.8Gi       1.2Mi       234Mi       2.9Gi
+Swap:          3.8Gi          0B       3.8Gi
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2   24G  8.0G   15G  36% /
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: enp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    altname enx000c29627fec
+    inet 192.168.31.73/24 metric 100 brd 192.168.31.255 scope global dynamic enp2s0
+       valid_lft 43038sec preferred_lft 43038sec
+default via 192.168.31.1 dev enp2s0 proto dhcp src 192.168.31.73 metric 100 
+192.168.31.0/24 dev enp2s0 proto kernel scope link src 192.168.31.73 metric 100 
+192.168.31.1 dev enp2s0 proto dhcp scope link src 192.168.31.73 metric 100 
+active
+13.0.10.0 (build-25056151)

@@ -1,0 +1,10 @@
+# OS images and VM files are stored outside this ticket folder.
+*.iso
+*.vmdk
+*.vmem
+*.vmss
+*.vmsn
+*.nvram
+*.vmx
+*.vmxf
+*.lck/

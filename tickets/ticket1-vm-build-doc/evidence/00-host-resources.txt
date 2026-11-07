@@ -1,0 +1,24 @@
+Host resource observation
+Client-local date: 2026-11-02 (Asia/Qyzylorda)
+
+Source: read-only Win32_ComputerSystem, Win32_OperatingSystem,
+Win32_LogicalDisk queries and vmware.exe file version.
+
+Host OS: Microsoft Windows 11 Pro
+Version: 10.0.26200
+Mainboard/model: MAXSUN MS-Challenger Z890M
+TotalPhysicalMemoryBytes: 34080120832
+NumberOfLogicalProcessors: 24
+FreePhysicalMemoryKiB: 19529412
+
+Drive: C:
+SizeBytes: 999031828480
+FreeSpaceBytes: 357744177152
+
+VMware ProductVersion: 26.0.1 build-25688693
+VMware FileVersion: 26.0.1 build-25688693
+UI branding: VMware Workstation Pro 26H1
+
+Units: 1 GiB = 1073741824 bytes. FreePhysicalMemory is reported in KiB.
+Free RAM and disk space are a point-in-time observation.
+This file does not measure running guest resource use.

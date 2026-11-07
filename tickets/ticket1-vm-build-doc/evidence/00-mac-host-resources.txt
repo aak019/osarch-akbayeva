@@ -1,0 +1,28 @@
+Mac host resource evidence
+Source: supplied original macOS Terminal output.
+Capture time: 2026-11-04 00:02:51 +05:00.
+
+$ date
+Wed Nov  4 00:02:51 +05 2026
+
+$ sw_vers
+ProductName:            macOS
+ProductVersion:         27.0.1
+BuildVersion:           26A434
+
+$ sysctl hw.memsize hw.logicalcpu
+hw.memsize: 17179869184
+hw.logicalcpu: 10
+
+$ df -k /System/Volumes/Data
+Filesystem   1024-blocks      Used Available Capacity iused      ifree %iused  Mounted on
+/dev/disk3s5   482746452 118699904 337376220    27%  860953 3373762200    0%   /System/Volumes/Data
+
+Unit conversions from the captured values:
+RAM: 17179869184 / 1073741824 = 16 GiB.
+Logical processors: 10.
+Data-volume capacity: 482746452 / 1048576 = 460.38289261 GiB.
+Data-volume available space: 337376220 / 1048576 = 321.74703598 GiB.
+
+df -k reports 1024-byte blocks. These are the reported Data-volume figures,
+not a separate physical-drive measurement. Free host RAM was not measured.
