@@ -1,0 +1,41 @@
+﻿=== CPU ===
+
+
+Name                      : Intel(R) Core(TM) Ultra 7 270K Plus
+NumberOfCores             : 24
+NumberOfLogicalProcessors : 24
+
+
+
+
+=== MEMORY ===
+
+
+TotalPhysicalMemory : 34080120832
+
+
+
+
+
+
+Manufacturer : Corsair
+Capacity     : 17179869184
+Speed        : 7000
+
+Manufacturer : Corsair
+Capacity     : 17179869184
+Speed        : 7000
+
+
+
+
+=== DISK ===
+
+
+Model         : KINGSTON SKC2500M81000G
+Size          : 1000202273280
+InterfaceType : SCSI
+
+
+
+
