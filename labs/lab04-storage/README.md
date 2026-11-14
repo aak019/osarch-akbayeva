@@ -157,6 +157,7 @@ Checksums before and after the failure: match
 
 ## RAID is not a backup
 **Your colleague deleted the wrong file from the mirror an hour ago. Does RAID 1 help? Why?**
+
 No, RAID 1 does not help when someone deletes a file by mistake. The file is deleted from both disks because RAID 1 mirrors the changes. Separate backup is needed to recover the deleted file
 
 ## What did not work the first time
