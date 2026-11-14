@@ -1,0 +1,9 @@
+$ lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS
+NAME         SIZE TYPE FSTYPE  MOUNTPOINTS
+sr0          2.9G rom  iso9660 
+nvme0n2        1G disk         
+nvme0n3       25G disk         
+├─nvme0n3p1    1G part vfat    /boot/efi
+└─nvme0n3p2 23.9G part ext4    /
+nvme0n1        1G disk         
+nvme0n4        1G disk    
