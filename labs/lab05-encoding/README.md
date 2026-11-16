@@ -8,7 +8,7 @@ LibreOffice: Kazakh letters displayed as incorrect characters but the columns we
 Terminal: Kazakh letters were incorrect but the CSV content was displayed
 
 ## Diagnosis (made before the fix)
-- file said: Non-ISO extended-ASCII text, with CRLF line terminators [hexdump-before.txt](evidence/file-before.txt)
+- file said: Non-ISO extended-ASCII text, with CRLF line terminators [file-before.txt](evidence/file-before.txt)
 - First 16 bytes: 4944 3bd4 e0ec e8eb e8ff 3bc8 ecff 3bce [hexdump-before.txt](evidence/hexdump-before.txt)
 - Encoding: RK1048 - because the byte a3 represents Ә in RK1048 and RK1048 displayed the Kazakh names correctly
 - Line ending: CRLF - because the hex dump shows 0D 0A at the end of the CSV lines
