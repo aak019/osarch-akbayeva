@@ -27,7 +27,9 @@ mv "$out.tmp" "$out"
 ```
 
 ## Verification
-the fixed file uses UTF-8 with BOM and CRLF line endings. It opened correctly in excel, libreOffice and git bash [file-after.txt](evidence/file-after.txt); ![opens-correctly.png](evidence/opens-correctly.png)
+the fixed file uses UTF-8 with BOM and CRLF line endings. It opened correctly in excel, libreOffice and git bash [file-after.txt](evidence/file-after.txt);
+
+![opens-correctly.png](evidence/opens-correctly.png)
 
 ## What did not work the first time
 I ran the file command in powershell using git bash syntax. It didnt save the command output correctly, then I opened git bash and ran the command again and the result was saved correctly. I also tested windows 1251 but some kazakh letters were incorrect. Using RK1048 displayed them correctly
