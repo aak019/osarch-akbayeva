@@ -3,13 +3,13 @@
 # 1. 
 Yes, the laptop can run both guests at the same time
 
-| Component	| Memory |
-|---|---|---|
-| Windows 11 Home host (idle)	| 4–6 GB |
-| Ubuntu guest |	2 GB |
-| Windows guest |	4 GB |
+| Component | Memory |
+|---|---|
+| Windows 11 Home host (idle) | 4–6 GB |
+| Ubuntu guest | 2 GB |
+| Windows guest | 4 GB |
 | Virtualization overhead (estimated) | ~0.5 GB |
-| Total	10.5–12.5 GB of 16 GB |
+| Total | 10.5–12.5 GB of 16 GB |
 
 The laptop has about 3.5–5.5 GB left. The Ryzen 7 7735HS has 8 cores and 16 threads which is enough for two small VMs. The 512 GB NVMe SSD is also suitable if there is enough free space for both guests
 
