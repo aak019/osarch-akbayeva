@@ -2,7 +2,8 @@
 
 # 1. 
 Yes, the laptop can run both guests at the same time
-| Component	 | Memory |
+
+| Component	| Memory |
 |---|---|---|
 | Windows 11 Home host (idle)	| 4–6 GB |
 | Ubuntu guest |	2 GB |
