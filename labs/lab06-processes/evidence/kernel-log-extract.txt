@@ -1,0 +1,19 @@
+$ journalctl -k -b --since "30 min ago" --no-pager -o short-iso | grep -i -E -B3 -A8 "out of memory|oom-kill"
+2026-11-22T17:53:41+00:00 lab01-akbayeva kernel: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+2026-11-22T17:53:41+00:00 lab01-akbayeva kernel: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+2026-11-22T17:53:42+00:00 lab01-akbayeva kernel: Adding 131068k swap on /var/tmp/lab06-retry/swap.  Priority:-1 extents:8 across:3997696k 
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: stress-ng-vm invoked oom-killer: gfp_mask=0x140dca(GFP_HIGHUSER_MOVABLE|__GFP_ZERO|__GFP_COMP), order=0, oom_score_adj=1000
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: CPU: 0 UID: 0 PID: 863 Comm: stress-ng-vm Not tainted 7.0.0-43-generic #43-Ubuntu PREEMPT(lazy) 
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: Call trace:
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  show_stack+0x24/0x50 (C)
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  dump_stack_lvl+0x80/0xc0
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  dump_stack+0x1c/0x40
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  dump_header+0x4c/0x1c8
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  oom_kill_process+0x2a4/0x350
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel:  out_of_memory+0xe8/0x3a0
+--
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: [    863]     0   863   206148   164884   164723      145        16  1544192    16894          1000 stress-ng-vm
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: [    864]     0   864   206148   171121   170944      161        16  1585152    15950          1000 stress-ng-vm
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: [    870]     0   870     4038      675      279      396         0    73728        0             0 sleep
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/lab06-load,task=stress-ng-vm,pid=864,uid=0
+2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: Out of memory: Killed process 864 (stress-ng-vm) total-vm:824592kB, anon-rss:683776kB, file-rss:644kB, shmem-rss:64kB, UID:0 pgtables:1548kB oom_score_adj:1000
