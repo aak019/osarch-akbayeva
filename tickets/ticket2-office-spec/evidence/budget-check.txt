@@ -1,0 +1,14 @@
+budget.csv (51 item lines)
+  accountant  511340 KZT
+  sales       728963 KZT
+  developer   712243 KZT
+  designer    1039563 KZT
+  Grand total  2992109 KZT
+  Remaining budget before delivery  7891 KZT
+
+prebuilt.csv (17 item lines)
+  accountant  643920 KZT
+  sales       900610 KZT
+  developer   793420 KZT
+  designer    1079100 KZT
+  Grand total  3417050 KZT
