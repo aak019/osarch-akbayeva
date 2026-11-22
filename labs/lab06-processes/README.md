@@ -29,10 +29,10 @@ $ ls /proc/745/fd | wc -l
 4
 $ sudo ls -l /proc/745/fd | head
 total 0
-lr-x------  1 root root 64 Nov 22 17:53 0 -> /dev/null
-l-wx------  1 root root 64 Nov 22 17:53 1 -> /dev/hvc0
-l-wx------  1 root root 64 Nov 22 17:53 2 -> /dev/hvc0
-lrwx------+ 1 root root 64 Nov 22 17:53 3 -> socket:[15168]
+lr-x------  1 root root 64 Nov 22 22:53 0 -> /dev/null
+l-wx------  1 root root 64 Nov 22 22:53 1 -> /dev/hvc0
+l-wx------  1 root root 64 Nov 22 22:53 2 -> /dev/hvc0
+lrwx------+ 1 root root 64 Nov 22 22:53 3 -> socket:[15168]
 ```
 
 ### Where the tools disagree
@@ -45,14 +45,14 @@ The Linux process had three standard streams and a listening socket. The Process
 
 ## Part 2 — Memory pressure
 
-The Ubuntu guest had 2,096 MiB assigned in VMware Fusion for the experiment. Ubuntu reported 1.6 GiB of RAM and 3.8 GiB of swap. The recovery snapshot was named `before-lab6`. The timestamps below are in UTC, as recorded in the guest.
+The Ubuntu guest had 2,096 MiB assigned in VMware Fusion for the experiment. Ubuntu reported 1.6 GiB of RAM and 3.8 GiB of swap. The recovery snapshot was named `before-lab6`. All times are shown in Almaty time.
 
 ```bash
 free -h
 swapon --show
 cd ~ && mkdir -p lab06 && cd lab06
-{ echo "=== BEFORE $(date) ==="; free -h; } > memory-pressure.txt
-while true; do echo "=== $(date +%T) ==="; free -h; sleep 3; done | tee -a memory-pressure.txt
+{ echo "=== BEFORE $(TZ=Asia/Almaty date '+%F %H:%M') ==="; free -h; } > memory-pressure.txt
+while true; do echo "=== $(TZ=Asia/Almaty date +%H:%M) ==="; free -h; sleep 3; done | tee -a memory-pressure.txt
 ```
 
 In a second terminal, I increased the load in this order. After the last run, I stopped the recording loop with Ctrl+C and appended the final `free -h`.
@@ -61,22 +61,22 @@ In a second terminal, I increased the load in this order. After the last run, I 
 stress-ng --vm 2 --vm-bytes 70% --timeout 60s
 stress-ng --vm 2 --vm-bytes 90% --timeout 60s
 stress-ng --vm 2 --vm-bytes 120% --timeout 90s
-{ echo "=== AFTER $(date) ==="; free -h; } >> memory-pressure.txt
+{ echo "=== AFTER $(TZ=Asia/Almaty date '+%F %H:%M') ==="; free -h; } >> memory-pressure.txt
 ```
 
-| 19 November | Before (10:53:41) | Least available (10:57:24) | Peak swap (10:58:36) | After (11:01:15) |
+| 19 November | Before (15:53) | Least available (15:57) | Peak swap (15:58) | After (16:01) |
 | --- | --- | --- | --- | --- |
 | Available | 1.2 GiB | 26 MiB | 86 MiB | 1.4 GiB |
 | Swap used | 0 B | 87 MiB | 1.4 GiB | 73 MiB |
 
-The three runs started at 10:54:32, 10:56:01 and 10:57:15. Swap first registered use at 10:56:15, during the 90% run. The recorder continued sampling roughly every three seconds throughout the run. Available RAM returned to 1.4 GiB at 10:58:48, just after the 120% run reached its 90-second timeout. The final sample still showed 73 MiB in swap.
+The three runs started at 15:54, 15:56 and 15:57. Swap first registered use at 15:56, during the 90% run. The recorder continued sampling roughly every three seconds throughout the run. Available RAM returned to 1.4 GiB at 15:58, just after the 120% run reached its 90-second timeout. The final sample still showed 73 MiB in swap.
 
 ### What the kernel did
 
 For the original run, I searched the journal for OOM messages in the interval covered by the recording.
 
 ```bash
-sudo journalctl -k --since "2026-11-19 10:53:00" --until "2026-11-19 11:02:00" |
+sudo env TZ=Asia/Almaty journalctl -k --since "2026-11-19 15:53" --until "2026-11-19 16:02" |
     grep -i -E "out of memory|oom-kill|killed process"
 ```
 
@@ -90,18 +90,18 @@ journalctl -k -b --since "30 min ago" --no-pager -o short-iso |
     grep -i -E -B3 -A8 "out of memory|oom-kill"
 ```
 
-| 22 November | Before (17:53:42) | Worst (17:53:48.613) | After (17:55:21) |
+| 22 November | Before (22:53) | Worst (22:53) | After (22:55) |
 | --- | --- | --- | --- |
 | Available | 1.2 GiB | 22 MiB | 1.2 GiB |
 | Swap used | 0 B | 127 MiB | 36 KiB |
 
 ```text
-2026-11-22T17:53:48+00:00 lab01-akbayeva kernel: Out of memory: Killed process 864 (stress-ng-vm) total-vm:824592kB, anon-rss:683776kB, file-rss:644kB, shmem-rss:64kB, UID:0 pgtables:1548kB oom_score_adj:1000
+22:53 lab01-akbayeva kernel: Out of memory: Killed process 864 (stress-ng-vm) total-vm:824592kB, anon-rss:683776kB, file-rss:644kB, shmem-rss:64kB, UID:0 pgtables:1548kB oom_score_adj:1000
 ```
 
-At 17:53:48 UTC (22:53:48 in Almaty), the kernel recorded `global_oom` and killed worker 864. The memory record from that second shows 22 MiB available and swap full. Worker 864 held about 668 MiB of anonymous resident memory and had an OOM score adjustment of 1000, which made it a preferred victim. At 17:53:48.849, available RAM was back to 508 MiB. The collector kept running, although one sample interval stretched to about 1.07 seconds at 17:54:13. The parent `stress-ng` command finished at 17:55:18.
+At 22:53, the kernel recorded `global_oom` and killed worker 864. The memory sample at the OOM shows 22 MiB available and swap full. Worker 864 held about 668 MiB of anonymous resident memory and had an OOM score adjustment of 1000, which made it a preferred victim. Within the same minute, available RAM was back to 508 MiB. The collector kept running, although one sample interval stretched to about 1.07 seconds at 22:54. The parent `stress-ng` command finished at 22:55.
 
-I restored the original Ubuntu guest to 4 GiB RAM and shut down the copy after its final sample.
+After the memory-pressure test, I restored the original Ubuntu guest’s RAM allocation to 4 GiB (4096 MiB). I shut down the copy after its final sample.
 
 ### Windows
 
@@ -110,9 +110,15 @@ Get-WinEvent -FilterHashtable @{LogName='System'; ProviderName='Microsoft-Window
     Format-List TimeCreated, Id, Message
 ```
 
-Result pending. The Windows guest runs on a separate PC without a remote connection.
+PowerShell returned `NoMatchingEventsFound`.
 
-Windows records event 2004 when it detects low virtual memory. The event names the largest consumers of committed memory. If the system reaches its commit limit, further allocations can fail. [Microsoft Learn](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-application-service-memory-leaks)
+```text
+Get-WinEvent : No events were found that match the specified selection criteria.
+```
+
+Windows records event 2004 when it detects low virtual memory. The event names the largest consumers of committed memory. If the system reaches its commit limit, further allocations can fail.
+
+I restored the Windows VM’s RAM allocation to 4 GB (4096 MB), as shown in VMware Workstation.
 
 ## What did not work the first time
 
@@ -125,3 +131,5 @@ On the first retry, the recorder and the memory workers ran in the same service.
 - [htop.png](evidence/htop.png) — the Ubuntu HTTP server command, its parent and its memory figures.
 - [memory-pressure.txt](evidence/memory-pressure.txt) — time-stamped `free -h` output from before, during and after both recorded runs.
 - [kernel-log-extract.txt](evidence/kernel-log-extract.txt) — the retry’s journal query, OOM decision and worker PID.
+- [windows-event-log.png](evidence/windows-event-log.png) — the PowerShell query and its result.
+- [windows-ram-restored.png](evidence/windows-ram-restored.png) — VMware Workstation showing the Windows VM’s 4 GB RAM allocation.
